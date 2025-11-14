@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="NeoWordleSolver.WordleSolverView.PossibilitiesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NeoWordleSolver.WordleSolverView"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="540">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="ListView">
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <!-- 
+        Stack Panel?
+        
+        1. Possible Words Count
+        2. List of all possible words
+        
+        -->
+        <TextBlock Text="{Binding Path=PossibleWordsCount, StringFormat='Possible Words: {0}'}" Grid.Row="0"/>
+        <ListView Grid.Row="1" ItemsSource="{Binding Path=PossibleWords}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

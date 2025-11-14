@@ -1,0 +1,51 @@
+﻿<Window x:Class="NeoWordleSolver.WordleSolverView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NeoWordleSolver.WordleSolverView"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1080">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="Width" Value="50"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+            <Style TargetType="StackPanel">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        
+        <!--
+        
+        Have 5 letter dropdown slots to pick a letter for known, or '-' for blank
+        Have a list of checkboxes for known letters
+        Have a list of checkboxes for impossible letters
+        BASED ON LETTERS SELECTED IN OTHER INPUT AREAS THE LIST OF LETTERS AVAILABLE SHOULD SHRINK
+        
+        -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+            <ComboBox x:Name="FirstLetterOption" ItemsSource="{Binding Path=AllChars}" SelectedItem="{Binding Path=FirstLetter, Mode=TwoWay}"/>
+            <ComboBox x:Name="SecondLetterOption" ItemsSource="{Binding Path=AllChars}" SelectedItem="{Binding Path=SecondLetter, Mode=TwoWay}"/>
+            <ComboBox x:Name="ThirdLetterOption" ItemsSource="{Binding Path=AllChars}" SelectedItem="{Binding Path=ThirdLetter, Mode=TwoWay}"/>
+            <ComboBox x:Name="FourthLetterOption" ItemsSource="{Binding Path=AllChars}" SelectedItem="{Binding Path=FourthLetter, Mode=TwoWay}"/>
+            <ComboBox x:Name="FifthLetterOption" ItemsSource="{Binding Path=AllChars}" SelectedItem="{Binding Path=FifthLetter, Mode=TwoWay}"/>
+        </StackPanel>
+        <local:SpecificsControl x:Name="SpecificsView" Grid.Row="1" Grid.Column="0"/>
+        <local:PossibilitiesControl x:Name="PossibilitiesView" Grid.Column="1" Grid.RowSpan="2"/>
+    </Grid>
+</Window>

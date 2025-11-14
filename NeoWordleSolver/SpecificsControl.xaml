@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="NeoWordleSolver.WordleSolverView.SpecificsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NeoWordleSolver.WordleSolverView"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="540">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="ListView">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="30"/>
+                <Setter Property="Width" Value="100"/>
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding Path=Letters}" Grid.Row="0" Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Path=IsKnown}"/>
+                        <TextBlock Text="{Binding Path=Letter}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="ImpossibleList" ItemsSource="{Binding Path=Letters}" Grid.Row="0" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel x:Name="ImpossibleLetters" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Path=IsImpossible}"/>
+                        <TextBlock Text="{Binding Path=Letter}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="ClearSelections" Content="Clear" Grid.Row="1" Grid.ColumnSpan="2" Click="ClearButtonClick"/>
+    </Grid>
+</UserControl>
